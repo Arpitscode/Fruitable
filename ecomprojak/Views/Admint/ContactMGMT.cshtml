@@ -1,0 +1,35 @@
+﻿
+@{
+    ViewBag.Title = "ContactMGMT";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+@model List<ecomprojak.Models.Tbl_Contact>
+<h1 class="text-center text-uppercase">Table of Contacts</h1>
+<div class="row m-2">
+    <table class="table border">
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Enquiry</th>
+            <th>Regdate</th>
+            <th></th>
+            <th></th>
+        </tr>
+        @{
+            foreach (var x in Model)
+            {
+                <tr>
+                    <td>@x.Id</td>
+                    <td>@x.name</td>
+                    <td>@x.email</td>
+                    <td>@x.enquiry</td> 
+                    <td>@x.regdate</td>
+                    <td><a href="/Admint/Contactdelete?id=@x.Id"><b class="btn btn-outline-danger">Delete</b></a></td>
+                    <td><a href="/Admint/Update?id=@x.Id"><b class="btn btn-outline-success">Update</b></a></td>
+                </tr>
+            }
+        }
+    </table>
+</div>

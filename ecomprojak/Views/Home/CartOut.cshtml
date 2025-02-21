@@ -1,0 +1,152 @@
+﻿
+@{
+    ViewBag.Title = "CartOut";
+    Layout = "~/Views/Shared/HomeLayout.cshtml";
+}
+@using ecomprojak.Models
+<style>
+    #dd input {
+        width: 50px;
+    }
+</style>
+@*<script>
+        $(document).ready(function () {
+            var myUrl = window.location.href;
+            var url = new URL(myUrl);
+            var pname = url.searchParams.get("apname").split(",");
+            var pic = url.searchParams.get("appic").split(",");
+            var mrp = url.searchParams.get("apmrp").split(",");
+            var discount = url.searchParams.get("apdispr").split(",");
+            var description = url.searchParams.get("apdescp").split(",");
+            var category = url.searchParams.get("apcate").split(",");
+            var quantity = url.searchParams.get("apquantity").split(",");
+            var tb = "";
+            var tpp = 0;
+            var tt = 1;
+
+            for (var i = 0; i < pname.length; i++) {
+                tb = tb + "<tr id='tb" + i + "'><td>" + (i + 1) + "</td><td>" + pname[i] + "</td><td><img src=" + pic[i] + " width='50' height='50'></td><td id='pd" + i + "'>" + mrp[i] + "</td><td id='p" + i + "'>" + discount[i] + "</td><td>" + category[i] + "</td><td><input type='number' value='" + quantity[i] + "' min='1' id='q" + i + "'/></td><td id='tt" + i + "'>" + discount[i] + "</td><td>" + description[i] + "</td><td><a class='btn btn-danger remove' id='remove" + i + "'>Remove</a></td></tr>"
+            }
+
+            tb = tb + "<tr><td colspan='6'><h3>Grand Total</h3></td><td id='gt' style='font-weight:800'></td><td></td><td colspan='2'></td></tr><tr><td colspan='6'></td><td><a class='btn btn-primary' id='order' href='/Home/Index'>Check Out</a></td></tr>";
+            $("#dd").html(tb);
+
+            function updategt() {
+                var gt = 0;
+                for (var i = 0; i < pname.length; i++) {
+                    var tp = $("#tt" + i).text();
+                    gt = gt + Number(tp);
+                }
+                $("#gt").text(gt);
+            }
+
+            // Update the total when quantity is changed
+            $("input").on("input", function () {
+                var q = $(this).val();
+                var id = $(this).attr("id");
+                var indx = id.substring(id.lastIndexOf('q') + 1); // Get the index
+                var pp = $("#p" + indx).text(); // Price
+                var quantity = $("#q" + indx).val();
+                var tt = quantity * pp;
+                $("#tt" + indx).text(tt);
+                updategt();
+            });
+
+            // Remove item from the cart when "Remove" button is clicked
+            $(".remove").on("click", function () {
+                var id = $(this).attr("id"); // Get the ID of the clicked remove button
+                var indx = id.substring(id.lastIndexOf('e') + 1); // Extract index from the id (e.g., remove0 -> 0)
+                $("#tb" + indx).remove(); // Remove the row
+
+                // Update the total after removal
+                pname.splice(indx, 1);
+                pic.splice(indx, 1);
+                mrp.splice(indx, 1);
+                discount.splice(indx, 1);
+                description.splice(indx, 1);
+                category.splice(indx, 1);
+                quantity.splice(indx, 1);
+
+                updategt(); // Recalculate and update the grand total
+            });
+
+            // Initial update of the grand total
+            updategt();
+        });
+
+    </script>*@
+<div class="container-fluid">
+    <div class="row">
+        <table class="table">
+            <thead class="bg-dark" style="color: white;">
+                <tr>
+                    <th>Sr.No</th>
+                    <th>Product Name</th>
+                    <th>Product Picture</th>
+                    <th>Product Price</th>
+                    <th>After Discount</th>
+                    <th>Product Category</th>
+                    <th>Product Quantity</th>
+                    <th>Total</th>
+                    <th>Product Description</th>
+                    <th></th>
+                </tr>
+            </thead>
+                @if (Session["cart"] != null)
+                {
+                    int grandTotal = 0;
+                <tbody id="dd">
+                    @foreach (var item in (List<Cart>)Session["cart"])
+                    {
+                        <tr>
+                            <td>@item.product.pid</td>
+                            <td>@item.product.pname</td>
+                            <td><img src="~/Content/Productsimg/@item.product.ppic" width="50" height="50" /></td>
+                            <td>@item.product.price</td>
+                            <td>@item.product.disprice</td>
+                            <td>@item.product.pcate</td>
+                            <td><input type="number" class="form-control" min="1" max="100" value="@item.quantity"/></td>
+                            <td>
+                                <b class="pt">
+                                    @{ int ptotal = int.Parse(item.product.disprice) * item.quantity;}                        @ptotal
+                                </b>
+                            </td>
+                            <td><a href=@Url.Action("RemoveToCart", "Home", new {@pid=item.product.pid}) class="btn btn-primary">Remove</a></td>
+                        </tr>
+                        grandTotal = grandTotal + ptotal;
+                                        }
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <th colspan="7">
+                            <b class="text-center">Grand Total</b>
+                        </th>
+                        <th colspan="2">
+                            <b>
+                                @grandTotal
+                            </b>
+                        </th>
+                    </tr>
+                    <tr>
+                        <td colspan="8">
+                        </td>
+                        <td>
+                            <a href="/Home/CheckOut" class="btn btn-info">CheckOut<span class="fa-shopping-cart" ></span></a>
+                        </td>
+                    </tr>
+                </tfoot>
+                }
+        </table>
+    </div>
+</div>
+@*@{
+        int grandTotal = 0;
+        if (Session["cart"] != null)
+        {
+            foreach (var i in (List<ecomprojak.Models.Cart>)Session["cart"])
+            {
+                int ptotal = int.Parse(item.product.disprice) * item.quantity;
+            }
+        }
+        }
+    }*@

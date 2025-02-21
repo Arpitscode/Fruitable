@@ -1,0 +1,58 @@
+﻿
+@{
+    ViewBag.Title = "Contact";
+    Layout = "~/Views/Shared/HomeLayout.cshtml";
+}
+
+<div class="row contactmain" style="justify-content: center;align-items: center;">
+    <h1 class="text-center" style="font-size:3rem;color: rgb(41, 250, 34);">Contact US Page</h1>
+</div>
+<div class="row bg-light rounded p-3" style="margin:3% 10%;">
+    <div class="col-12 text-center p-5">
+        <h1 class="" style="color: rgb(41, 250, 34);">Get in touch</h1>
+        <p class="fs-5" style="color:#747d88;">The contact form is currently inactive. Get a functional and working contact form with Ajax & PHP in a few minutes. Just copy and paste the files, add a little code and you're done.<br><a style="color:rgb(76, 219, 71);" class="fs-4"> Download Now.</a></p>
+    </div>
+    <div class="col-sm-6 p-3 rounded" style="border:2px solid grey;">
+        <h1 class="text-center">Contact US</h1>
+        <form class="contactform" action="/Home/Contact" method="post">
+            <label>Name:</label>
+            <input type="text" name="name" placeholder="Enter Your Name.. " id="name" class="form-control"><br />
+            <label>Email:</label>
+            <input type="text" name="email" placeholder="Enter Your Email.. " id="name" class="form-control"><br />
+            <label>Enquiry:</label>
+            <textarea name="enquiry" id="enquiry" placeholder="Enter Your Enquiry.." class="form-control"></textarea><br />
+            <input type="submit" value="Submit" class="btn btn-outline-danger form-control">
+        </form>
+    </div>
+    <div class="col-sm-6 px-5 py-2 py-md-0">
+        <div class="row py-3 my-2 rounded" style="justify-content: center;align-items: center;background:white;">
+            <div class="col-sm-3  text-md-center">
+                <img src="~/Content/icon/geo-alt-fill.svg" width="40">
+            </div>
+            <div class="col-sm-8">
+                <h2 class="fs-3">Address</h2>
+                <p class="text-muted fs-5">123,street New York,USA</p>
+            </div>
+        </div>
+        <div class="row py-3 my-2 rounded" style="justify-content: center; align-items: center; background: white;">
+            <div class="col-sm-3  text-md-center">
+                <img src="~/Content/icon/envelope-fill.svg" width="40">
+            </div>
+            <div class="col-sm-8">
+                <h2 class="fs-3">MailUs</h2>
+                <p class="text-muted fs-5">Email@gmail.com</p>
+            </div>
+        </div>
+        <div class="row py-3 my-2  rounded" style="justify-content: center; align-items: center; background: white;">
+            <div class="col-sm-3  text-md-center">
+                <img src="~/Content/icon/telephone-fill.svg" width="40">
+            </div>
+            <div class="col-sm-8">
+                <h2 class="f-3">TelePhone</h2>
+                <p class="text-muted fs-5">+91 0000000000</p>
+            </div>
+        </div>
+    </div>
+
+</div>
+

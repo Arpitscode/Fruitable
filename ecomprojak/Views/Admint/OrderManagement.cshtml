@@ -1,0 +1,45 @@
+﻿
+@{
+    ViewBag.Title = "OrderManagement";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+@model List<ecomprojak.Models.Tbl_Order>
+<h2 class="text-center">ProductManagement</h2>
+<div class="row m-2">
+    <table class="table border-2">
+        <tr>
+            <th>Order Id</th>
+            <th>User Email</th>
+            <th>Product Id</th>
+            <th>Prodcut Name</th>
+            <th>Product Category</th>
+            <th>Product Price</th>
+            <th>Product Discounted Price</th>
+            <th>Product Quantity</th>
+            <th>Product Pic</th>
+            <th>Order Date</th>
+            <th></th>
+            <th></th>
+        </tr>
+        @{
+            foreach (var x in Model)
+            {
+                <tr>
+                    <td>@x.OrdId</td>
+                    <td>@x.Uemail</td>
+                    <td>@x.pid</td>
+                    <td>@x.pname</td>
+                    <td>@x.pcate</td>
+                    <td>@x.price</td>
+                    <td>@x.disprice</td>
+                    <td>@x.pquantity</td>
+                    <td><img src="~/Content/Productsimg/@x.ppic" width="50" height="50" /></td>
+                    <td>@x.orddate</td>
+                    <td><a href="/Admint//@x.pid" class="btn btn-danger">Delete</a></td>
+                    <td><a href="/Admint/?id=@x.pid" class="btn btn-info">Update</a></td>
+                </tr>
+            }
+        }
+    </table>
+</div>
+

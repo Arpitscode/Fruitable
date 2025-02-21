@@ -1,0 +1,29 @@
+﻿
+@{
+    ViewBag.Title = "SignUp";
+    Layout = "~/Views/Shared/HomeLayout.cshtml";
+}
+
+<div class="row p-5" style="justify-content: center; align-items: center;">
+    <div class="col-sm-6 p-5 pt-3" style="border: 1px solid rgba(128, 128, 128, 0.26);">
+        <h2 class="fs-1 text-center" style="color: rgb(41, 250, 34);font-family:cursive;">Register Now</h2>
+        <p class="text-muted">Welcome Our Website</p>
+        <hr>
+        <form class="contactform" method="post" action="/Home/SignUp" enctype="multipart/form-data">
+            <label>Name:</label>
+            <input type="text" name="name" id="name" placeholder="Enter Your Name.." class="form-control" /><br />
+            <label>Email:</label>
+            <input type="email" name="email" id="email" placeholder="Enter Your Email.." class="form-control" /><br />
+            <label>Password:</label>
+            <input type="password" name="password" id="password" placeholder="Enter Your Password.." class="form-control" /><br />
+            <label>Mobile:</label>
+            <input type="number" name="mob" id="mob" placeholder="Enter Your Mobile.." class="form-control" /><br />
+            <label>Profile:</label>
+            <input type="file" name="profile" id="profile" class="form-control" /><br />
+            <label>Address:</label>
+            <textarea type="text" name="address" id="address" class="form-control"></textarea><br/>
+            <input type="submit" value="Register" class="form-control btn btn-outline-success" />
+        </form>
+    </div>
+</div>
+

@@ -1,0 +1,30 @@
+﻿
+@{
+    ViewBag.Title = "AdminMGMT";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+@model List<ecomprojak.Models.Tbl_Login>
+<h1 class="text-center text-uppercase">Table of Admin</h1>
+<div class="row m-2">
+    <table class="table border" style="border:2px solid gray;">
+        <tr>
+            <th>Email</th>
+            <th>Password</th>
+            <th></th>
+            <th></th>
+        </tr>
+        @{
+            foreach (var x in Model)
+            {
+                <tr> 
+                    <td>@x.email</td>
+                    <td>@x.password</td>
+                    <td><a href="/Admint/Delete?em=@x.email">Delete</a></td>
+                    <td><a href="/Admint/Update?em=@x.email">Update</a></td>
+                </tr>
+            }
+        }
+    </table>
+</div>
+

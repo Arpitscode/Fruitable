@@ -1,0 +1,29 @@
+﻿
+@{
+    ViewBag.Title = "CategoryManagement";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+@model List<ecomprojak.Models.Tbl_Category>
+<h2 class="text-center">CategoryManagement</h2>
+<div class="row m-2">
+    <table class="table border-2">
+        <tr>
+            <th>Category Id</th>
+            <th>Category Name</th>
+            <th></th>
+            <th></th>
+        </tr>
+        @{ 
+            foreach(var x in Model)
+            {
+                <tr>
+                    <td>@x.cid</td>
+                    <td>@x.cname</td>
+                    <td><a href="/Admint/Delete_Category/@x.cid" class="btn btn-danger">Delete</a></td>
+                    <td><a href="/Admint/Update_Category?id=@x.cid" class="btn btn-info">Update</a></td>
+                </tr>
+            }
+        }
+    </table>
+</div>
+

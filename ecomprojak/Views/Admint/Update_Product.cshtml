@@ -1,0 +1,56 @@
+﻿
+@{
+    ViewBag.Title = "Update_Product";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+@model ecomprojak.Models.Tbl_Product
+@using ecomprojak.Models
+<div class="row unscroll">
+    <div class="col-sm-3"></div>
+    <div class="col-sm-6 formcont p-5">
+        <h2 class="text-center mb-3">Update Products</h2>
+        <form action="/Admint/Update_Product" method="post" enctype="multipart/form-data" class="p-5">
+            @{
+                if (Request.QueryString["id"] != null)
+                {
+                    <input type="hidden" value="@Model.pid" name="pid" />
+                    <label>Product Name:</label>
+                    <input type="text" name="pname" class="form-control" placeholder="Enter Your Product Name..." value="@Model.pname" /><br />
+                    <label>Product Category:</label>
+                    <select name="pcate" class="form-select">
+                        <option value="">-- Select Category --</option>
+                        @{
+                            ecomadoEntities con = new ecomadoEntities();
+                            List<Tbl_Category> cate = con.Tbl_Category.ToList();
+                            foreach (var x in cate)
+                            {
+                                if (x.cname == Model.pcate)
+                                {
+                                    <option selected>@Model.pcate</option>
+                                }
+                                else
+                                {
+                                    <option>@x.cname</option>
+                                }
+                            }
+
+                        }
+                    </select><br />
+                    <label>Product MRP:</label>
+                    <input type="text" name="price" class="form-control" placeholder="Enter Your Product Price..." value="@Model.price" /><br />
+                    <label>After Disconut Price:</label>
+                    <input type="text" name="disprice" class="form-control" placeholder="Enter Your After Disconut Price..." value="@Model.disprice" /><br />
+                    <label>Quantity:</label>
+                    <input type="text" name="pquantity" class="form-control" placeholder="Enter Your Product Quantity..." value="@Model.pquantity" /><br />
+                    <label>Product File:</label>
+                    <img src="~/Content/Productsimg/@Model.ppic" width="50" height="50" />
+                    <input type="file" name="ppic" class="form-control" /><br />
+                    <label>Product Description:</label>
+                    <textarea type="text" name="description" placeholder="Enter Products Description" class="form-control">@Model.description</textarea><br />
+                }
+            }
+            <button type="submit" class="btn btn-outline-info mb-4">Upload Product</button>
+        </form>
+    </div>
+</div>
+

@@ -1,0 +1,40 @@
+﻿
+@{
+    ViewBag.Title = "ProductManagement";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+@model List<ecomprojak.Models.Tbl_Product>
+<h2 class="text-center">ProductManagement</h2>
+<div class="row m-2">
+    <table class="table border-2">
+        <tr>
+            <th>Product Id</th>
+            <th>Product Name</th>
+            <th>Product Category</th>
+            <th>Product Mrp</th>
+            <th>Product Discounted Price</th>
+            <th>Product Quantity</th>
+            <th>Product Picture</th>
+            <th>Product Description</th>
+            <th></th>
+            <th></th>
+        </tr>
+        @{
+            foreach (var x in Model)
+            {
+                <tr>
+                    <td>@x.pid</td>
+                    <td>@x.pname</td>
+                    <td>@x.pcate</td>
+                    <td>@x.price</td>
+                    <td>@x.disprice</td>
+                    <td>@x.pquantity</td>
+                    <td><img src="~/Content/Productsimg/@x.ppic" width="50" height="50"/></td>
+                    <td>@x.description</td>
+                    <td><a href="/Admint/Delete_Product/@x.pid" class="btn btn-danger">Delete</a></td>
+                    <td><a href="/Admint/Update_Product?id=@x.pid" class="btn btn-info">Update</a></td>
+                </tr>
+            }
+        }
+    </table>
+</div>

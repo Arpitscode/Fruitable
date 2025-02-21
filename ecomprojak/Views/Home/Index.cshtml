@@ -1,0 +1,381 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/HomeLayout.cshtml";
+}
+
+
+@model List<ecomprojak.Models.Tbl_Product>
+@{
+    ecomprojak.Models.ecomadoEntities con = new ecomprojak.Models.ecomadoEntities();
+    List<ecomprojak.Models.Tbl_Category> tbc = con.Tbl_Category.ToList();
+}
+
+<div class="row slider" style="min-height:70vh;">
+    <div class="col-sm-12 px-5 p-4 " style="background: #ffffffd6;">
+        <div class="row">
+            <div class="col-sm-7 p-5">
+                <span style="color: #ffb524; font-size:1.5rem;letter-spacing: 2px;">100% Organic Foods</span>
+                <h1 style="color: yellowgreen; font-size:4rem;">
+                    Organic Veggies & Fruits Foods
+                </h1>
+                <div class="ms-md-2 ms-none mt-4 me-5 form" style="position: relative;">
+                    <input type="text" placeholder="Search" class="form-control input">
+                    <button class="btn btn-success">Submit Now</button>
+                </div>
+            </div>
+            <div class="col-sm-3 slider-cont">
+                <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-inner rounded">
+                        <div class="carousel-item active" data-bs-interval="2000">
+                            <img src="~/Content/fruitimg/hero-img-1.png" style="background: #ffb524;"
+                                 class="d-block w-100 rounded" alt="slider1">
+                        </div>
+                        <div class="carousel-item" data-bs-interval="2000">
+                            <img src="~/Content/fruitimg/hero-img-2.jpg" class="d-block w-100 rounded" alt="slider2">
+                        </div>
+                    </div>
+                    <button class="carousel-control-prev" type="button"
+                            data-bs-target="#carouselExampleInterval" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button"
+                            data-bs-target="#carouselExampleInterval" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row services text-center">
+    <div class="col-6 col-md-3">
+        <div class=" card p-3 mt-md-0 mt-5">
+            <img src="~/Content/icon/truck.svg" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5>Free Shipping</h5>
+                <p class="card-text">Free on order over $300</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-6 col-md-3">
+        <div class="card p-3 mt-md-0 mt-5">
+            <img src="~/Content/icon/shield-fill-plus.svg" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5>Security Payment</h5>
+                <p class="card-text">100% security payment</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-6 col-md-3">
+        <div class="card p-3 mt-md-0 mt-5">
+            <img src="~/Content/icon/arrow-left-right.svg" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5>30 Day Return</h5>
+                <p class="card-text">30 day money guarantee</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-6 col-md-3">
+        <div class="card p-3 mt-md-0 mt-5">
+            <img src="~/Content/icon/telephone-fill.svg" class="card-img-top" alt="...">
+            <div class="card-body"> 
+                <h5>24/7 Support</h5>
+                <p class="card-text">Support every time fast</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row m-5" style="justify-content: center;">   
+    <div class="col-sm-12 d-flex mt-5 mb-3" style="justify-content: space-around;">
+        <h1 style="color: #45595b;
+    font-size: 1.8rem;">
+            Our Organic Products
+        </h1>
+        <div class="d-none d-md-block">
+            <button class="btn bg-light">All Products</button>
+            @{ bool cart = false;
+                    foreach (var c in tbc)
+                    {
+                    <button class="btn bg-light">@c.cname</button>
+                }
+            }
+        </div>
+    </div>
+    @{ 
+        var k = 1;
+        foreach (var p in Model)
+        {
+            if (k < 5)
+            {
+                <div class="fruitfoodcard rounded">
+                    <div style="height: 200px;width: 250px; overflow: hidden;">
+                        <span class="btn" style="background: #ffb524; position: absolute; z-index: 1000; margin: 3px 5px; padding: 1px 10px;" id="pcate">@p.pcate</span>
+                        <img src="~/Content/Productsimg/@p.ppic" id="ppic" width="250" height="200" />
+                    </div>
+                    <div class="p-3">
+                        <h1 id="pname">@p.pname</h1>
+                        <p class="d-inline" id="pdescp">@p.description</p><span>...</span><br />
+                        <span><strike style="color:red;font-size:25px" id="pmrp">@p.price</strike></span>
+                        <span style="font-size:25px;margin-left:10%" id="pdispr">@p.disprice</span><br />
+                        <small class="text-muted" id="pquant">@p.pquantity</small>
+                        @*@using (Html.BeginForm("AddtoCart", "Home", new { @pid = p.pid }, FormMethod.Post))*@
+                        @*{*@
+                            <span class='cartbtn d-none'>
+                                <button class='btn btn-danger remove'>-</button>
+                                <span class='btn btn-info quantity px-4'>1</span>
+                                <button class='btn btn-success add'>+</button>
+                            </span>
+                        
+                        <button class="btn btn-outline-success addproduct" id="btn-@p.pid">Add To Cart </button>
+                        @*}*@
+                    </div>
+                </div>
+            }
+            k++;
+
+        }
+    }
+</div>
+<script>
+    $(document).ready(function () {
+        $(".addproduct").click(function () {
+            var id = $(this).attr("id");
+            var nid = id.substring(id.lastIndexOf('-') + 1);
+            var quantity=$("#cart").text();
+            //alert(nid);
+            $.getJSON("/Home/AddtoCart", { id: nid }, function (data) {
+                $("#" + id).text("Add More");
+                alert(data);
+                //var tq=quantity++;
+                //$("#cart").text(tq);
+            })
+        })
+    })
+</script>
+<div class="row feature-cont">
+    <div class="col-12 col-md-3 cont rounded" style=" border: 1px solid #ffb524;">
+        <img src="~/Content/fruitimg/featur-1.jpg" />
+        <div class="featurebox" style="background: #ffb524;">
+            <div class="feature rounded" style=" background: rgb(137, 228, 0);color: white;">
+                <h6>Fresh Apples</h6>
+                <h4 class=" fs-md-1 fs-4">20<span>% OFF</span></h4>
+            </div>
+        </div>
+    </div>
+    <div class="col-12 col-md-3 cont rounded" style=" border: 1px solid #45595b">
+        <img src="~/Content/fruitimg/featur-2.jpg" />
+        <div class="featurebox" style="background: #45595b;">
+            <div class="feature rounded" style=" background:#f4f6f8;color: white;">
+                <h6 style=" color: rgb(137, 228, 0);">Tasty Fruits</h6>
+                <h4 class="fs-md-1 fs-4">Free delivery</h4>
+            </div>
+        </div>
+    </div>
+    <div class="col-12 col-md-3 cont rounded" style="border: 1px solid rgb(137, 228, 0);">
+        <img src="~/Content/fruitimg/featur-3.jpg" />
+        <div class="featurebox" style="background: rgb(137, 228, 0);">
+            <div class="feature rounded" style=" background:#ffb524;color: white; position:relative;">
+                <h6>Exotix Vegitable</h6>
+                <h4 class="fs-md-1 fs-4">Discount 30$</h4>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row p-5" style="min-height: 60vh;justify-content: center;">
+    <h1 class="mb-5" style="color: #45595b;" id="Vegetable">Fresh Organic Vegetables</h1>
+    <div class="row">
+        @{
+            var j=1;
+            foreach (var p in Model)
+            {
+                if (j < 5)
+                {
+                    if (p.pcate == "Vegetable")
+                    {
+                    <div class="fruitfoodcard rounded">
+                        <div style="height: 200px;width: 250px; overflow: hidden;">
+                            <span class="btn" style="background: #ffb524; position: absolute; z-index: 1000; margin: 3px 5px; padding: 1px 10px; ">@p.pcate</span>
+                            <img src="~/Content/Productsimg/@p.ppic" width="250" height="200" />
+                        </div>
+                        <div class="p-3">
+                            <h1>@p.pname</h1>
+                            <p>@p.description</p>
+                            <span><strike style="color:red;font-size:25px">@p.price</strike></span>
+                            <span style="font-size:25px;margin-left:10%">@p.disprice</span><br />
+                            <small class="text-muted">@p.pquantity</small>
+                            @*@using (Html.BeginForm("AddtoCart", "Home", new { @pid = p.pid }, FormMethod.Post))
+                            {*@
+                                <button class="btn btn-outline-success addproduct" id="btn-@p.pid">Add To Cart</button>
+                            @*}*@
+                        </div>
+                    </div>
+                        }j++;
+                    }
+                }
+            }
+
+    </div>
+
+</div>
+
+
+<div class="row banner p-5" style=" background: #ffb524; justify-content: space-evenly;">
+    <div class="col-sm-5 content p-5 p-5">
+        <h1 class="mb-3">Fresh Exotic Fruits</h1>
+        <h2 class="mb-3">in Our Store</h2>
+        <p>
+            The generated Lorem Ipsum is therefore always free from repetition injected humour, or
+            non-characteristic
+            words etc.
+        </p>
+        <button class=" mt-2 btn btn-outline-success">Buy</button>
+    </div>
+    <div class="col-sm-7" style="position: relative;">
+        <div class="img">
+            <div class="mrp d-none d-md-block">
+                <h1>1<span style="font-size:30px">kg</span><b>50$</b></h1>
+            </div>
+            <img src="~/Content/fruitimg/baner-1.png" class="img-fluid" style="" />
+        </div>
+    </div>
+</div>
+
+
+<div class="row seller text-center my-5" style="justify-content:center;">
+    <h1 class="my-3" style="color: #45595b;font-size: 4rem; font-weight: 700;">Bestseller Products</h1>
+    <p class="my-5 mt-0" style="color: #747d88;font-size:1.3rem;">
+        Latin words, combined with a handful of model
+        sentence structures, to generate Lorem Ipsum which looks reasonable.
+    </p>
+    <div class="col-sm-3 sellproduct d-flex p-3 bg-light rounded">
+        <div class="img">
+            <img src="~/Content/fruitimg/best-product-1.jpg" class="rounded-circle" width="150" height="150" />
+        </div>
+        <div class="content ps-5">
+            <h1>Organic Tomato</h1><br />
+            <span>3.12 $</span><br />
+            <button class="btn btn-outline-success">Add To Cart</button>
+        </div>
+    </div>
+    <div class="col-sm-3 sellproduct d-flex p-3 bg-light rounded">
+        <div class="img">
+            <img src="~/Content/fruitimg/best-product-1.jpg" class="rounded-circle" width="150" height="150" />
+        </div>
+        <div class="content ps-5">
+            <h1>Organic Tomato</h1><br />
+            <span>3.12 $</span><br />
+            <button class="btn btn-outline-success">Add To Cart</button>
+        </div>
+    </div>
+    <div class="col-sm-3 sellproduct d-flex p-3 bg-light rounded">
+        <div class="img">
+            <img src="~/Content/fruitimg/best-product-1.jpg" class="rounded-circle" width="150" height="150" />
+        </div>
+        <div class="content ps-5">
+            <h1>Organic Tomato</h1><br />
+            <span>3.12 $</span><br />
+            <button class="btn btn-outline-success">Add To Cart</button>
+        </div>
+    </div>
+</div>
+<div class="row" style="justify-content: center;">
+    <div class="card p-0 m-2" style="width: 18rem;">
+        <img class="card-img-top" src="~/Content/fruitimg/best-product-3.jpg" alt="Card image cap">
+        <div class="card-body text-center" style="font-size:1.5rem;color: #45595b;">
+            <h5 class="card-title">Organic Tomato</h5>
+            <p class="card-text">3.12 $</p>
+            <button class="btn btn-outline-success">Add To Cart</button>
+        </div>
+    </div>
+    <div class="card p-0 m-2" style="width: 18rem;">
+        <img class="card-img-top" src="~/Content/fruitimg/best-product-4.jpg" alt="Card image cap">
+        <div class="card-body text-center" style="font-size:1.5rem;color: #45595b;">
+            <h5 class="card-title">Organic Tomato</h5>
+            <p class="card-text">3.12 $</p>
+            <button class="btn btn-outline-success">Add To Cart</button>
+        </div>
+    </div>
+    <div class="card p-0 m-2" style="width: 18rem;">
+        <img class="card-img-top" src="~/Content/fruitimg/best-product-5.jpg" alt="Card image cap">
+        <div class="card-body text-center" style="font-size:1.5rem;color: #45595b;">
+            <h5 class="card-title">Organic Tomato</h5>
+            <p class="card-text">3.12 $</p>
+            <button class="btn btn-outline-success">Add To Cart</button>
+        </div>
+    </div>
+    <div class="card p-0 m-2" style="width: 18rem;">
+        <img class="card-img-top" src="~/Content/fruitimg/best-product-2.jpg" alt="Card image cap">
+        <div class="card-body text-center" style="font-size:1.5rem;color: #45595b;">
+            <h5 class="card-title">Organic Tomato</h5>
+            <p class="card-text">3.12 $</p>
+            <button class="btn btn-outline-success">Add To Cart</button>
+        </div>
+    </div>
+</div>
+<div class="row customer-card m-5 rounded text-center">
+    <div class="col-sm-3 pt-3 m-4 rounded">
+        <img src="~/Content/icon/person-fill.svg" class="my-2" />
+        <h1>SATISFIED CUSTOMERS</h1>
+        <span>1963</span>
+    </div>
+    <div class="col-sm-3 pt-3 m-4 rounded">
+        <img src="~/Content/icon/person-fill.svg" class="my-2" />
+        <h1>QUALITY OF SERVICE</h1>
+        <span>99%</span>
+    </div>
+    <div class="col-sm-3 pt-3 m-4 rounded">
+        <img src="~/Content/icon/person-fill.svg" class="my-2" />
+        <h1>QUALITY CERTIFICATES</h1>
+        <span>33</span>
+    </div>
+    <div class="col-sm-3 pt-3 m-4 rounded">
+        <img src="~/Content/icon/person-fill.svg" class="my-2" />
+        <h1>AVAILABLE PRODUCTS</h1>
+        <span>789</span>
+    </div>
+</div>
+<div class="row text-center feedback-cont">
+    <span style="color: rgb(137, 228, 0);font-size: 1.5rem;font-weight: 600;">Our Testimonial</span>
+    <h1 style="color: #45595b;font-weight: 600;">Our Client Saying !</h1>
+    <div class=" my-4 d-flex feed-cardcont flex-column flex-md-row">
+        <div class="feed-card m-5 p-3 rounded">
+            <span>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam, labore non maiores assumenda
+                quis
+                saepe.
+            </span><br />
+            <hr>
+            <div class="feed d-flex">
+                <div class="img">
+                    <img src="~/Content/icon/person-fill.svg" width="80" height="80" />
+                </div>
+                <div class="info ps-4 text-start">
+                    <h2>Client Name</h2>
+                    <h6 class="text-muted fs-6">Profession</h6>
+                </div>
+            </div>
+        </div>
+        <div class="feed-card m-5 p-3 rounded">
+            <span>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam, labore non maiores assumenda
+                quis
+                saepe.
+            </span><br />
+            <hr>
+            <div class="feed d-flex">
+                <div class="img">
+                    <img src="~/Content/icon/person-fill.svg" width="80" height="80" />
+                </div>
+                <div class="info ps-4 text-start">
+                    <h2>Client Name</h2>
+                    <h6 class="text-muted fs-6">Profession</h6>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

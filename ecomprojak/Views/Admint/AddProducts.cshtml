@@ -1,0 +1,41 @@
+﻿
+@{
+    ViewBag.Title = "AddProducts";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+@using ecomprojak.Models
+<div class="row unscroll">
+    <div class="col-sm-3"></div>
+    <div class="col-sm-6 formcont p-5">
+        <h2 class="text-center mb-3">Add Products</h2>
+        <form action="/Admint/AddProducts" method="post" enctype="multipart/form-data" class="p-5">
+            <label>Product Name:</label>
+            <input type="text" name="pname" class="form-control" placeholder="Enter Your Product Name..." /><br />
+            <label>Product Category:</label>
+            <select name="pcate" class="form-select">
+                <option value="">-- Select Category --</option>
+                @{
+                    ecomadoEntities con = new ecomadoEntities();
+                    List<Tbl_Category> cate = con.Tbl_Category.ToList();
+                    foreach (var x in cate)
+                    {
+                        <option>@x.cname</option>
+                    }
+
+                }
+            </select><br />
+            <label>Product MRP:</label>
+            <input type="text" name="price" class="form-control" placeholder="Enter Your Product Price..." /><br />
+            <label>After Disconut Price:</label>
+            <input type="text" name="disprice" class="form-control" placeholder="Enter Your After Disconut Price..." /><br />
+            <label>Quantity:</label>
+            <input type="text" name="pquantity" class="form-control" placeholder="Enter Your Product Quantity..." /><br />
+            <label>Product File:</label>
+            <input type="file" name="ppic" class="form-control" /><br />
+            <label>Product Description:</label>
+            <textarea type="text" name="description" placeholder="Enter Products Description" class="form-control"></textarea><br />
+            <button type="submit" class="btn btn-outline-info mb-4">Upload Product</button>
+        </form>
+    </div>
+</div>  

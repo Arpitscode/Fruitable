@@ -1,0 +1,259 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="ecomadoModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Tbl_Category">
+          <Key>
+            <PropertyRef Name="cid" />
+          </Key>
+          <Property Name="cid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="cname" Type="varchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="Tbl_Contact">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="50" />
+          <Property Name="email" Type="varchar" MaxLength="200" />
+          <Property Name="enquiry" Type="varchar" MaxLength="200" />
+          <Property Name="regdate" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Tbl_Login">
+          <Key>
+            <PropertyRef Name="email" />
+          </Key>
+          <Property Name="email" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="password" Type="varchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="Tbl_Order">
+          <Key>
+            <PropertyRef Name="OrdId" />
+          </Key>
+          <Property Name="OrdId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Uemail" Type="varchar" MaxLength="200" />
+          <Property Name="pid" Type="int" Nullable="false" />
+          <Property Name="pname" Type="varchar" MaxLength="200" />
+          <Property Name="pcate" Type="nchar" MaxLength="10" />
+          <Property Name="price" Type="varchar" MaxLength="200" />
+          <Property Name="disprice" Type="varchar" MaxLength="200" />
+          <Property Name="pquantity" Type="varchar" MaxLength="200" />
+          <Property Name="ppic" Type="varchar(max)" />
+          <Property Name="orddate" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="Tbl_Product">
+          <Key>
+            <PropertyRef Name="pid" />
+          </Key>
+          <Property Name="pid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="pname" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="pcate" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="price" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="disprice" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="pquantity" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="ppic" Type="varchar(max)" Nullable="false" />
+          <Property Name="description" Type="varchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Tbl_Register">
+          <Key>
+            <PropertyRef Name="email" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="50" />
+          <Property Name="email" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="password" Type="varchar" MaxLength="200" />
+          <Property Name="mob" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="profile" Type="varchar(max)" />
+          <Property Name="address" Type="varchar" MaxLength="200" />
+          <Property Name="regdate" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityContainer Name="ecomadoModelStoreContainer">
+          <EntitySet Name="Tbl_Category" EntityType="Self.Tbl_Category" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tbl_Contact" EntityType="Self.Tbl_Contact" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tbl_Login" EntityType="Self.Tbl_Login" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tbl_Order" EntityType="Self.Tbl_Order" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tbl_Product" EntityType="Self.Tbl_Product" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tbl_Register" EntityType="Self.Tbl_Register" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ecomadoModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Tbl_Category">
+          <Key>
+            <PropertyRef Name="cid" />
+          </Key>
+          <Property Name="cid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="cname" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Tbl_Contact">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="email" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="enquiry" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="regdate" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Tbl_Login">
+          <Key>
+            <PropertyRef Name="email" />
+          </Key>
+          <Property Name="email" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="password" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Tbl_Order">
+          <Key>
+            <PropertyRef Name="OrdId" />
+          </Key>
+          <Property Name="OrdId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Uemail" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="pid" Type="Int32" Nullable="false" />
+          <Property Name="pname" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="pcate" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="price" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="disprice" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="pquantity" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="ppic" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="orddate" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Tbl_Product">
+          <Key>
+            <PropertyRef Name="pid" />
+          </Key>
+          <Property Name="pid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="pname" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="pcate" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="price" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="disprice" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="pquantity" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ppic" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Tbl_Register">
+          <Key>
+            <PropertyRef Name="email" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="email" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="password" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="mob" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="profile" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="address" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="regdate" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityContainer Name="ecomadoEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Tbl_Category" EntityType="Self.Tbl_Category" />
+          <EntitySet Name="Tbl_Contact" EntityType="Self.Tbl_Contact" />
+          <EntitySet Name="Tbl_Login" EntityType="Self.Tbl_Login" />
+          <EntitySet Name="Tbl_Order" EntityType="Self.Tbl_Order" />
+          <EntitySet Name="Tbl_Product" EntityType="Self.Tbl_Product" />
+          <EntitySet Name="Tbl_Register" EntityType="Self.Tbl_Register" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ecomadoModelStoreContainer" CdmEntityContainer="ecomadoEntities">
+          <EntitySetMapping Name="Tbl_Category">
+            <EntityTypeMapping TypeName="ecomadoModel.Tbl_Category">
+              <MappingFragment StoreEntitySet="Tbl_Category">
+                <ScalarProperty Name="cid" ColumnName="cid" />
+                <ScalarProperty Name="cname" ColumnName="cname" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tbl_Contact">
+            <EntityTypeMapping TypeName="ecomadoModel.Tbl_Contact">
+              <MappingFragment StoreEntitySet="Tbl_Contact">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="enquiry" ColumnName="enquiry" />
+                <ScalarProperty Name="regdate" ColumnName="regdate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tbl_Login">
+            <EntityTypeMapping TypeName="ecomadoModel.Tbl_Login">
+              <MappingFragment StoreEntitySet="Tbl_Login">
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="password" ColumnName="password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tbl_Order">
+            <EntityTypeMapping TypeName="ecomadoModel.Tbl_Order">
+              <MappingFragment StoreEntitySet="Tbl_Order">
+                <ScalarProperty Name="OrdId" ColumnName="OrdId" />
+                <ScalarProperty Name="Uemail" ColumnName="Uemail" />
+                <ScalarProperty Name="pid" ColumnName="pid" />
+                <ScalarProperty Name="pname" ColumnName="pname" />
+                <ScalarProperty Name="pcate" ColumnName="pcate" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="disprice" ColumnName="disprice" />
+                <ScalarProperty Name="pquantity" ColumnName="pquantity" />
+                <ScalarProperty Name="ppic" ColumnName="ppic" />
+                <ScalarProperty Name="orddate" ColumnName="orddate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tbl_Product">
+            <EntityTypeMapping TypeName="ecomadoModel.Tbl_Product">
+              <MappingFragment StoreEntitySet="Tbl_Product">
+                <ScalarProperty Name="pid" ColumnName="pid" />
+                <ScalarProperty Name="pname" ColumnName="pname" />
+                <ScalarProperty Name="pcate" ColumnName="pcate" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="disprice" ColumnName="disprice" />
+                <ScalarProperty Name="pquantity" ColumnName="pquantity" />
+                <ScalarProperty Name="ppic" ColumnName="ppic" />
+                <ScalarProperty Name="description" ColumnName="description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tbl_Register">
+            <EntityTypeMapping TypeName="ecomadoModel.Tbl_Register">
+              <MappingFragment StoreEntitySet="Tbl_Register">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="mob" ColumnName="mob" />
+                <ScalarProperty Name="profile" ColumnName="profile" />
+                <ScalarProperty Name="address" ColumnName="address" />
+                <ScalarProperty Name="regdate" ColumnName="regdate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

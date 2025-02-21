@@ -1,0 +1,45 @@
+﻿
+@{
+    ViewBag.Title = "Products";
+    Layout = "~/Views/Shared/HomeLayout.cshtml";
+}
+
+@model List<ecomprojak.Models.Tbl_Product>
+<h2>Products</h2>
+<div class="row m-5" style="justify-content: center;">
+    <div class="col-sm-12 d-flex mt-5 mb-3" style="justify-content: space-around;">
+        <h1 style="color: #45595b;
+    font-size: 1.8rem;">
+            Our Organic Products
+        </h1>
+        <div class="d-none d-md-block">
+            <button class="btn bg-light">All Products</button>
+            @{
+                ecomprojak.Models.ecomadoEntities con = new ecomprojak.Models.ecomadoEntities();
+                List<ecomprojak.Models.Tbl_Category> tbc = con.Tbl_Category.ToList();
+                foreach (var c in tbc)
+                {
+                    <button class="btn bg-light">@c.cname</button>
+                }
+            }
+        </div>
+    </div>
+    @{
+        foreach (var p in Model)
+        {
+            <div class="fruitfoodcard rounded">
+                <div style="height: 200px;width: 250px; overflow: hidden;">
+                    <span class="btn" style="background: #ffb524; position: absolute; z-index: 1000; margin: 3px 5px; padding: 1px 10px;">@p.pcate</span>
+                    <img src="~/Content/Productsimg/@p.ppic" width="250" height="200" />
+                </div>
+                <div class="p-3">
+                    <h1>@p.pname</h1>
+                    <p class="d-inline">@p.description</p><span>...</span><br />
+                    <span><strike style="color:red;font-size:25px">@p.price</strike></span>
+                    <span style="font-size:25px;margin-left:10%">@p.disprice</span><br />
+                    <button class="btn btn-outline-success">Add To Cart</button>
+                </div>
+            </div>
+        }
+    }
+</div>

@@ -1,0 +1,196 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link rel="stylesheet" href="~/Content/bootstrap.min.css">
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/bootstrap.bundle.min.js"></script>
+    <script src="~/Scripts/jquery-3.7.0.min.js"></script>
+    <link rel="stylesheet" href="~/Content/style.css">
+    <script src="~/Content/menutoggle.js"></script>
+    <link href="~/Content/css/card.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row px-5 header-cont" style="background:white;">
+            <div class="col-sm-12 header px-3">
+                <div class="row">
+                    <div class="col-sm-3 my-1 ms-3">123 Street New York</div>
+                    <div class="col-sm-4 my-2 text-center">Email@gmail.com</div>
+                    <div class="col-sm-2 my-2">
+                        <a href="/Home/SignIn" class="btn btn-primary">SignIn</a>
+                    </div>
+                    <div class="col-sm-2 my-2">
+                        <a href="/Home/SignUp" class="btn btn-danger">SignUP</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row sticky-top" style=" box-shadow: 0px 40px 35px #00000057;">
+            <nav class="navbar navbar-expand-lg navbar-light " style="border:none;padding: 5px 0px;">
+                <div class="container-fluid">
+                    <a class="navbar-brand logo ms-3" href="#">
+                        FruiTables
+                    </a>
+                    <button class="navbar-toggler togglebtn" type="button" onclick="menutogglebtn()"
+                            data-bs-toggle="collapse" data-bs-target="#menu" aria-controls="menu" aria-expanded="false"
+                            aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon" id="bar"></span>
+                        <img src="~/Content/icon/xmark.svg" height="30px" id="xmark" style="display: none;" />
+                    </button>
+                    <div class="collapse navbar-collapse " id="menu">
+                        <ul class="navbar-nav me-auto ms-auto mb-2">
+                            <li class="nav-item me-4">
+                                <a class="nav-link active hvr-underline-from-center" aria-current="page"
+                                   href="/Home/Index">Home</a>
+                            </li>
+                            <li class="nav-item me-4">
+                                <a class="nav-link hvr-underline-from-center" href="/Home/About">About Us</a>
+                            </li>
+                            <li class="nav-item me-4">
+                                <a class="nav-link hvr-underline-from-center" href="/Home/Products">All Products</a>
+                            </li>
+                            <li class="nav-item me-4">
+                                <a class="nav-link hvr-underline-from-center" href="/Home/Contact">Contact</a>
+                            </li>
+
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle hvr-underline-from-center" href="#"
+                                   id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Pages
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <li>
+                                        <a class="dropdown-item hvr-underline-from-center" href="#">Image Gallery</a>
+                                    </li>
+                                    <li>
+                                        <hr class="dropdown-divider">
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item hvr-underline-from-center" href="#">Video Gallery</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                        <div class="d-flex me-5">
+                            <a href="">
+                                <img src="~/Content/icon/search.svg" class="me-4 p-2 search rounded-circle"
+                                     style="border:2px solid #ffb524; width: 40px;" />
+                            </a>
+                            <a class="btn btn-primary" href="/Home/CartOut">
+                                <img src="~/Content/icon/basket-fill.svg" style="width: 20px;" />
+                                @*<span class="badge text-bg-secondary" id="cart">
+                                    @{
+                                        int Qunatity = 0;
+                                        if (Session["cart"] != null)
+                                        {
+                                            foreach (var i in (List<ecomprojak.Models.Cart>)Session["cart"])
+                                            {
+                                                Qunatity += i.quantity;
+                                            }
+                                            @Qunatity
+                                        }
+                                    }
+                                </span>*@
+                            </a>
+                            @if (Session["Useremail"] != null)
+                            {
+                                <a href="/Home/LogOut" class="btn btn-primary mx-3">LogOut</a>
+                            }
+                            else
+                            {
+                                <a href="/Home/SignIn"><img src="~/Content/icon/person-fill.svg" class="me-4 ms-4" style="width: 30px;" /></a>
+                            }
+
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </div>
+        @RenderBody()
+        <div class="footer row p-5">
+            <div class="col-sm-12">
+                <div class="row">
+                    <div class="col-sm-3">
+                        <a class="navbar-brand logo ms-3" href="#">
+                            FruiTables
+                        </a>
+                        <p style="color: #ffb524;">Fresh Products</p>
+                    </div>
+                    <div class="col-sm-3 px-5">
+                        <div class="form" style="position: relative;">
+                            <input type="text" placeholder="Search" class="form-control input">
+                            <button class="btn btn-success">Submit Now</button>
+                        </div>
+                    </div>
+                    <div class="col-sm-3 ms-auto">
+                        <img src="~/Content/icon/twitter.svg" height="50px" style="border:1px solid black;border-radius: 50%;padding: 3px;" />
+                        <img src="~/Content/icon/facebook.svg" height="50px" style="border:1px solid black;border-radius: 50%;padding: 3px;" />
+                        <img src="~/Content/icon/youtube.svg" height="50px" style="border:1px solid black;border-radius: 50%;padding: 3px;" />
+                        <img src="~/Content/icon/linked.svg" height="50px" style="border:1px solid black;border-radius: 50%;padding: 3px;" />
+                    </div>
+                </div>
+            </div>
+            <hr />
+            <div class="footer-col col-12 col-md-3" data-aos="fade-right"
+                 data-aos-delay="1000"
+                 data-aos-duration="2000">
+                <ul>
+                    <h4><b>Why People Like Us!</b></h4>
+                    <li style="color: #ffffff9d;">
+                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quis ipsum debitis ipsam culpa eum non velit eaque soluta molestiae libero dolor ullam, tempora amet est illo nobis possimus fugiat, deserunt, quae recusandae<br />
+                        <button class="btn btn-outline-success">Read More</button>
+                    </li>
+                </ul>
+            </div>
+            <div class="footer-col col-12 col-md-3" data-aos="fade-right"
+                 data-aos-delay="1000"
+                 data-aos-duration="2000">
+                <ul>
+                    <h4><b>Shop Info</b></h4>
+                    <li><a href="#">About us</a></li>
+                    <li><a href="#">Contact Us</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms & Condition</a></li>
+                    <li><a href="#">Return Policy</a></li>
+                    <li><a href="#">FAQs Help</a></li>
+                </ul>
+            </div>
+            <div class="footer-col col-12 col-md-3" data-aos="fade-in"
+                 data-aos-delay="1150"
+                 data-aos-duration="2000">
+                <ul>
+                    <h4><b>Account</b></h4>
+                    <li><a href="#">My Account</a></li>
+                    <li><a href="/Home/AdminSignIn">Admin</a></li>
+                    <li><a href="#">Shop Details</a></li>
+                    <li><a href="#">Shopping Cart</a></li>
+                    <li><a href="#">Wishlist</a></li>
+                    <li><a href="#">Order History</a></li>
+                    <li><a href="#">Internals Orders</a></li>
+                </ul>
+            </div>
+            <div class="footer-col col-12 col-md-3" data-aos="fade-in" data-aos-delay="1300"
+                 data-aos-duration="2000">
+                <ul>
+                    <h4>Contact</h4>
+                    <li><a href="#">Address:1429 Netus Rd,Ny 42343</a></li>
+                    <li><a href="mailto:email@gmail.com">Email:Email@gmail.com</a></li>
+                    <li><a href="tel:1234567">Phone:+0123 4567 8901</a></li>
+                    <li><a href="#"></a></li>
+                </ul>
+            </div>
+            <hr>
+            <div class="row">
+                <h4 class="text-center" data-aos="fade-up"
+                    data-aos-duration="2000">
+                    Designed By Arpit Sahu
+                </h4>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+

@@ -1,0 +1,17 @@
+﻿
+@{
+    ViewBag.Title = "AddCategory";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+<div class="row unscroll">
+    <div class="col-sm-3"></div>
+    <div class="col-sm-6 formcont p-5">
+        <h2 class="text-center mb-3">Add Category</h2>
+        <form action="/Admint/AddCategory" method="post" class="p-5" style="overflow:unset;">
+            <label>Category Name:</label>
+            <input type="text" name="cname" class="form-control" placeholder="Enter Your Category Name..." /><br />
+            <button type="submit" class="btn btn-outline-info">ADD</button>
+        </form>
+    </div>
+</div>
