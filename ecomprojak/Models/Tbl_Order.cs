@@ -14,6 +14,7 @@ namespace ecomprojak.Models
     
     public partial class Tbl_Order
     {
+        public int Ordno { get; set; }
         public int OrdId { get; set; }
         public string Uemail { get; set; }
         public int pid { get; set; }

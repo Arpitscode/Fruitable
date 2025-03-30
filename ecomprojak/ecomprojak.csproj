@@ -349,7 +349,7 @@
     <Content Include="Views\Admint\Update_Category.cshtml" />
     <Content Include="Views\Home\CartOut.cshtml" />
     <Content Include="Views\Home\AdminSignIn.cshtml" />
-    <Content Include="Views\Home\CheckOut.cshtml" />
+    <Content Include="Views\Home\Orders.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Content\css\" />

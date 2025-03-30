@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Web;
 using System.Web.Mvc;
 using ecomprojak.Models;
@@ -159,36 +160,41 @@ namespace ecomprojak.Controllers
             Session["cart"] = cart;
             return Redirect("CartOut");
         }
-        public ActionResult CheckOut(Tbl_Order tbo)
+        public void CheckOut(Tbl_Order tbo)
         {
-            if (Session["Useremail"] != null){
-                List<Cart> order = (List<Cart>)Session["cart"];
-                for(var i = 0; i < order.Count; i++)
+            if (Session["Useremail"] != null)
+            {
+                List<Cart> cart = (List<Cart>)Session["cart"];
+                Tbl_Order tb = con.Tbl_Order.OrderByDescending(p => p.OrdId).FirstOrDefault();
+
+                int orderId = tb!=null?tb.OrdId+ 1:1;
+                foreach (var item in cart)
                 {
+                 tbo.pid= item.product.pid;
+                 tbo.pname= item.product.pname;
+                 tbo.pcate= item.product.pcate;
+                 tbo.price= item.product.price;
+                 tbo.disprice= item.product.disprice;
+                 tbo.pquantity= item.product.pquantity;
+                 tbo.ppic= item.product.ppic;
+                 tbo.orddate=DateTime.Now.ToShortDateString();     
                     tbo.Uemail = Session["Useremail"].ToString();
-                    tbo.pid= order[i].product.pid;
-                    tbo.pname= order[i].product.pname;
-                    tbo.pquantity= order[i].product.pquantity;
-                    tbo.price= order[i].product.price;
-                    tbo.disprice = order[i].product.disprice;
-                    tbo.pcate = order[i].product.pcate;
-                    tbo.ppic = order[i].product.ppic;
-                    tbo.orddate = DateTime.Now.ToShortDateString();
+                    tbo.OrdId = orderId;
                     con.Tbl_Order.Add(tbo);
-                    con.SaveChanges();
+                    if (con.SaveChanges() > 0)
+                    {
+                        Session["cart"] = null;
+                        Response.Write("<script>alert('SuccessFully! Ordered');window.location.href='/Home/Orders'</script>");
+                    }
+                    else
+                    {
+                        Response.Write("<script>alert('Failed! Ordered');window.location.href='/Home/CartOut'</script>");
+                    }
                 }
-                Response.Write("<script>alert('Order Successfully.we will be send Confrimation mail...');");
-                   Session["cart"] = null; 
-                //}
-                //else
-                //{
-                //    Response.Write("<script>alert('Order Failed Unsuccessfully.');window.location.href='/Home/CartOut'");
-                //}
-                return Redirect("Index");
-        }
+            }
             else
             {
-                return Redirect("SignIn");
+                Response.Write("<script>alert('Error!Try After Some Time..');window.location.href='/Home/CartOut'</script>");
             }
         }
         public ActionResult AdminSignIn()
@@ -222,6 +228,20 @@ namespace ecomprojak.Controllers
         {
             Session["Useremail"]=null;
             Response.Write("<script>alert('Logout Successfully');window.location.href='/Home/SignIn'</script>");
+        }
+        public ActionResult Orders()
+        {
+            if (Session["Useremail"] != null)
+            {
+                string useremail = Session["Useremail"].ToString();
+                List<Tbl_Order> lst = con.Tbl_Order.OrderByDescending(p => p.OrdId).Where(c => c.Uemail == useremail).ToList();
+                return View(lst);
+            }
+            else
+            {
+                Response.Write("<script>alert('Logout Successfully');w indow.location.href='/Home/SignIn'</script>");
+                return View();
+            }
         }
     }
 }

@@ -1,0 +1,71 @@
+﻿
+@{
+    ViewBag.Title = "Orders";
+    Layout = "~/Views/Shared/HomeLayout.cshtml";
+}
+@model List<ecomprojak.Models.Tbl_Order>
+<h2 class="text-center">Histroy Orders</h2>
+<div class="row m-2">
+    @{
+        string dt = "";
+        for (var i = 0; i < Model.Count; i++)
+        {
+            if (dt == Model[i].orddate)
+            {
+
+                <div class="fruitfoodcard rounded">
+                    <div style="height: 200px;width: 250px; overflow: hidden;">
+                        <span class="btn" style="background: #ffb524; position: absolute; z-index: 1000; margin: 3px 5px; padding: 1px 10px;" id="pcate">@Model[i].pcate</span>
+                        <img src="~/Content/Productsimg/@Model[i].ppic" id="ppic" width="250" height="200" />
+                    </div>
+                    <div class="p-3">
+                        <h1 id="pname">@Model[i].pname</h1>
+                        <span><strike style="color:red;font-size:25px" id="pmrp">@Model[i].price</strike></span>
+                        <span style="font-size:25px;margin-left:10%" id="pdispr">@Model[i].disprice</span><br />
+                        <small class="text-muted" id="pquant">@Model[i].pquantity</small>
+                        @*@using (Html.BeginForm("AddtoCart", "Home", new { @pid = p.pid }, FormMethod.Post))*@
+                        @*{*@
+                        <span class='cartbtn d-none'>
+                            <button class='btn btn-danger remove'>-</button>
+                            <span class='btn btn-info quantity px-4'>1</span>
+                            <button class='btn btn-success add'>+</button>
+                        </span>
+                        <span><a href="#" class="btn btn-danger">Cancel</a></span>
+
+                        @*}*@
+                    </div>
+                </div>
+                dt = Model[i].orddate;
+            }
+            else
+            {
+                <h5>@Model[i].orddate</h5>
+                <hr />
+                <div class="fruitfoodcard rounded">
+                    <div style="height: 200px;width: 250px; overflow: hidden;">
+                        <span class="btn" style="background: #ffb524; position: absolute; z-index: 1000; margin: 3px 5px; padding: 1px 10px;" id="pcate">@Model[i].pcate</span>
+                        <img src="~/Content/Productsimg/@Model[i].ppic" id="ppic" width="250" height="200" />
+                    </div>
+                    <div class="p-3">
+                        <h1 id="pname">@Model[i].pname</h1>
+                        <span><strike style="color:red;font-size:25px" id="pmrp">@Model[i].price</strike></span>
+                        <span style="font-size:25px;margin-left:10%" id="pdispr">@Model[i].disprice</span><br />
+                        <small class="text-muted" id="pquant">@Model[i].pquantity</small>
+                        @*@using (Html.BeginForm("AddtoCart", "Home", new { @pid = p.pid }, FormMethod.Post))*@
+                        @*{*@
+                        <span class='cartbtn d-none'>
+                            <button class='btn btn-danger remove'>-</button>
+                            <span class='btn btn-info quantity px-4'>1</span>
+                            <button class='btn btn-success add'>+</button>
+                        </span>
+                        <span><a href="#" class="btn btn-danger">Cancel</a></span>
+
+                        @*}*@
+                    </div>
+                </div>
+                dt = Model[i].orddate;
+            }
+
+        }
+    }
+</div>

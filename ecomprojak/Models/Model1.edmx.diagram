@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="7acd19d89ddd400bac2e12d8b6cb9b03" Name="Diagram1">
+      <Diagram DiagramId="6aa0cf6a6ee345138939a925e8e478e2" Name="Diagram1">
         <EntityTypeShape EntityType="ecomadoModel.Tbl_Category" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="ecomadoModel.Tbl_Contact" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="ecomadoModel.Tbl_Login" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />

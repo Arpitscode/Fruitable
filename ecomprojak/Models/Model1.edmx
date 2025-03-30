@@ -31,9 +31,10 @@
         </EntityType>
         <EntityType Name="Tbl_Order">
           <Key>
-            <PropertyRef Name="OrdId" />
+            <PropertyRef Name="Ordno" />
           </Key>
-          <Property Name="OrdId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Ordno" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OrdId" Type="int" Nullable="false" />
           <Property Name="Uemail" Type="varchar" MaxLength="200" />
           <Property Name="pid" Type="int" Nullable="false" />
           <Property Name="pname" Type="varchar" MaxLength="200" />
@@ -109,9 +110,10 @@
         </EntityType>
         <EntityType Name="Tbl_Order">
           <Key>
-            <PropertyRef Name="OrdId" />
+            <PropertyRef Name="Ordno" />
           </Key>
-          <Property Name="OrdId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Ordno" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OrdId" Type="Int32" Nullable="false" />
           <Property Name="Uemail" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
           <Property Name="pid" Type="Int32" Nullable="false" />
           <Property Name="pname" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
@@ -192,6 +194,7 @@
           <EntitySetMapping Name="Tbl_Order">
             <EntityTypeMapping TypeName="ecomadoModel.Tbl_Order">
               <MappingFragment StoreEntitySet="Tbl_Order">
+                <ScalarProperty Name="Ordno" ColumnName="Ordno" />
                 <ScalarProperty Name="OrdId" ColumnName="OrdId" />
                 <ScalarProperty Name="Uemail" ColumnName="Uemail" />
                 <ScalarProperty Name="pid" ColumnName="pid" />

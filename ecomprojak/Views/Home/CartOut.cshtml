@@ -96,6 +96,7 @@
                 {
                     int grandTotal = 0;
                 <tbody id="dd">
+                    @*@List<Cart> cart=(List<Cart>)Session["cart"];*@
                     @foreach (var item in (List<Cart>)Session["cart"])
                     {
                         <tr>
@@ -139,14 +140,3 @@
         </table>
     </div>
 </div>
-@*@{
-        int grandTotal = 0;
-        if (Session["cart"] != null)
-        {
-            foreach (var i in (List<ecomprojak.Models.Cart>)Session["cart"])
-            {
-                int ptotal = int.Parse(item.product.disprice) * item.quantity;
-            }
-        }
-        }
-    }*@
